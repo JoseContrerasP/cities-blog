@@ -61,7 +61,16 @@ def create_new_city(request):
         return render(request, "create_city.html", {"form": City_form})
 
     else:
-        pass
+        form = City_form(request.POST, request.FILES)
+        if form.is_valid():
+            new_city = form.save(commit=False)
+
+            new_city = form.save()
+
+            return redirect("home")
+
+        else:
+            return redirect("create_new_city")
 
 
 @login_required

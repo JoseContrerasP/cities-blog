@@ -5,6 +5,11 @@ from .models import Comment, Like_comment, City
 from django_countries.fields import CountryField
 
 
+from django_countries import countries
+
+# from django import newforms
+
+
 class Comment_form(forms.ModelForm):
     class Meta:
         model = Comment
@@ -43,11 +48,5 @@ class City_form(forms.ModelForm):
                     "placeholder": "Write the name of the city",
                 }
             ),
-            # 'contry': forms.Select(queryset=CountryField())
+            "contry": CountryField().formfield(),
         }
-
-
-# attrs={
-# 				'class': 'form-select form-select-sm',
-# 				'aria-label': ".form-select-lg example"
-# 				},
