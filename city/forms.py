@@ -3,9 +3,7 @@ from django import forms
 from .models import Comment, Like_comment, City
 
 from django_countries.fields import CountryField
-
-
-from django_countries import countries
+from django_countries.widgets import CountrySelectWidget
 
 # from django import newforms
 
@@ -48,5 +46,7 @@ class City_form(forms.ModelForm):
                     "placeholder": "Write the name of the city",
                 }
             ),
-            "contry": CountryField().formfield(),
+            "contry": CountryField().formfield(
+                widget=CountrySelectWidget(attrs={"class": "my-class"})
+            ),
         }
