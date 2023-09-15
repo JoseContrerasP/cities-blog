@@ -8,7 +8,7 @@ from django_countries.fields import CountryField
 
 class City(models.Model):
     name = models.CharField(max_length=200)
-    country = CountryField(default="MX")
+    country = CountryField()
     description = models.TextField()
     population = models.IntegerField(default=3000000)
     image = models.ImageField(upload_to="city/photos")
