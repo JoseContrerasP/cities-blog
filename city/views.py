@@ -65,6 +65,8 @@ def create_new_city(request):
         if form.is_valid():
             new_city = form.save(commit=False)
 
+            new_city.user = request.user
+
             new_city = form.save()
 
             return redirect("home")

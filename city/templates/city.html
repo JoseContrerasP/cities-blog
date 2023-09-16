@@ -9,8 +9,11 @@
 			<div class="col">
 				<div class="jumbotron">
 					<h1 class="display-4">{{ city.name }}</h1>
-                    <h5 class="card-title">{{ city.country.name }} <i class="{{ city.country.flag_css }}"></i></h5>
+                    <h4 class="card-title">{{ city.country.name }} <i class="{{ city.country.flag_css }}"></i></h4>
 					
+                    <h5 class="card-title">Author: {{ city.user }}</h5>
+                    <h5 class="card-title">Created at: {{ city.created_date }}</h5>
+
 					<hr class="my-4">
 					<p>{{ city.description }}</p>
 				</div>
@@ -44,15 +47,6 @@
 					
 					{% endif %}
 				{% endfor %}
-				
-
-				<!-- <button type="submit" class="save btn btn-dark">👍 
-					{% for key, value in likes.items %}
-						{% if key == comment.id %}
-							{{ value }}
-						{% endif %}
-					{% endfor %}
-				</button> -->
 
 			</form>
 		</div>

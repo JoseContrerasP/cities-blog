@@ -12,6 +12,7 @@ class City(models.Model):
     description = models.TextField()
     population = models.IntegerField(default=3000000)
     image = models.ImageField(upload_to="city/photos")
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
