@@ -76,6 +76,13 @@ def create_new_city(request):
 
 
 @login_required
+def my_cities(request):
+    my_cities = City.objects.filter(user=request.user)
+
+    return render(request, "my_cities.html", {"cities": my_cities})
+
+
+@login_required
 def create_new_comment(request, id):
     if request.method == "POST":
         form = Comment_form(request.POST)
