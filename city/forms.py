@@ -47,4 +47,12 @@ class City_form(forms.ModelForm):
                 }
             ),
             "contry": CountryField().formfield(),
+            "description": forms.Textarea(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Write the description of the city",
+                }
+            ),
+            "population": forms.NumberInput(attrs={"class": "form-control"}),
+            "image": forms.ClearableFileInput(attrs={"class": "form-control"}),
         }

@@ -83,6 +83,34 @@ def my_cities(request):
 
 
 @login_required
+def edit_city(request, city_id):
+    if request.method == "GET":
+        city = get_object_or_404(City, pk=city_id, user=request.user)
+        form = City_form(instance=city)
+
+        return render(request, "edit_city.html", {"city": city, "form": form})
+
+    else:
+        try:
+            city = get_object_or_404(City, pk=city_id, user=request.user)
+            form = City_form(request.POST, instance=city)
+            form.save()
+            return redirect("home")
+
+        except ValueError:
+            return render(
+                request,
+                "edit_city.html",
+                {
+                    "city": city,
+                    "form": form,
+                    "error": "Error updating city",
+                    "error1": form.errors,
+                },
+            )
+
+
+@login_required
 def delete_city(request, city_id):
     city = get_object_or_404(City, pk=city_id, user=request.user)
 

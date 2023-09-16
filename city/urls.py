@@ -16,6 +16,7 @@ urlpatterns = [
     ),
     path("city/create", views.create_new_city, name="create_new_city"),
     path("city/<int:city_id>/delete", views.delete_city, name="delete_city"),
+    path("city/<int:city_id>/edit", views.edit_city, name="edit_city"),
     path("city/my", views.my_cities, name="my_cities"),
     path("signup/", views.signup, name="signup"),
     path("signin/", views.signin, name="signin"),
