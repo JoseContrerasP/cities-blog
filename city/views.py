@@ -14,9 +14,7 @@ def index(request):
     return render(
         request,
         "cities.html",
-        {
-            "cities": cities,
-        },
+        {"cities": cities, "user": request.user},
     )
 
 
@@ -79,7 +77,18 @@ def create_new_city(request):
 def my_cities(request):
     my_cities = City.objects.filter(user=request.user)
 
-    return render(request, "my_cities.html", {"cities": my_cities})
+    return render(
+        request, "my_cities.html", {"cities": my_cities, "user": request.user}
+    )
+
+
+@login_required
+def delete_city(request, city_id):
+    city = get_object_or_404(City, pk=city_id, user=request.user)
+
+    if request.method == "POST":
+        city.delete()
+        return redirect("home")
 
 
 @login_required

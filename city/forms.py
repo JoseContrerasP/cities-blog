@@ -46,7 +46,5 @@ class City_form(forms.ModelForm):
                     "placeholder": "Write the name of the city",
                 }
             ),
-            "contry": CountryField().formfield(
-                widget=CountrySelectWidget(attrs={"class": "my-class"})
-            ),
+            "contry": CountryField().formfield(),
         }

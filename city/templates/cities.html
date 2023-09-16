@@ -13,6 +13,25 @@
                             <h5 class="card-title">{{ city.country.name }}</h5>
                             <p class="card-text">{{ city.description|slice:"150" }}...</p>
                             <a class="btn btn-dark" href="{% url 'city' id=city.id %}">Leer mas</a>
+                            {% if user == city.user %}
+                        
+                                <form action="{% url 'delete_city' city_id=city.id %}" method="POST">
+                                    {% csrf_token %}
+                                    
+                                    <button class="btn btn-danger">
+                                        Edit
+                                    </button>
+                                </form>
+
+
+                                <form action="{% url 'delete_city' city_id=city.id %}" method="POST">
+                                    {% csrf_token %}
+                                    
+                                    <button class="btn btn-danger">
+                                        Delete
+                                    </button>
+                                </form>
+                            {% endif %}
 
                         </div>
                     </div>

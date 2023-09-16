@@ -16,6 +16,28 @@
 
 					<hr class="my-4">
 					<p>{{ city.description }}</p>
+					<hr class="my-4">
+
+					{% if user == city.user %}
+                        
+                        <form action="{% url 'delete_city' city_id=city.id %}" method="POST">
+                            {% csrf_token %}
+                            
+                            <button class="btn btn-info">
+                                Edit
+                            </button>
+                        </form>
+
+
+                        <form action="{% url 'delete_city' city_id=city.id %}" method="POST">
+                            {% csrf_token %}
+                            
+                            <button class="btn btn-danger">
+                                Delete
+                            </button>
+                        </form>
+                    {% endif %}
+
 				</div>
 			</div>			
 		</div>
