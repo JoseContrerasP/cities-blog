@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -11,7 +12,7 @@ class City(models.Model):
     country = CountryField()
     description = models.TextField()
     population = models.IntegerField(default=3000000)
-    image = models.ImageField(upload_to="city/photos")
+    image = CloudinaryField("city/photos", blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     created_date = models.DateTimeField(default=timezone.now)

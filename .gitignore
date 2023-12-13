@@ -166,3 +166,7 @@ Makefile
 # city photos
 
 city/photos/
+
+settings/
+
+settings_local.py
