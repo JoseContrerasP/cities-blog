@@ -36,3 +36,12 @@ h1 a, h1, h2, h3, h4, h5 {
 #id_country {
 	width: 100%;
 }
+
+.card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 5;
+  }
+}

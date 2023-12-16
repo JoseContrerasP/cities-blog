@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY", default="your secret key")
 
-DEBUG = "RENDER" in os.environ
+DEBUG = "RENDER" not in os.environ
 
 ALLOWED_HOSTS = []
 
@@ -96,7 +96,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
 
@@ -108,13 +107,11 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "/static/"
 
-
-# if not DEBUG:
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
@@ -125,7 +122,7 @@ LOGIN_URL = "signin"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOGIN_REDIRECT_URL = "home"
+LOGIN_REDIRECT_URL = "/"
 
 
 cloudinary.config(
