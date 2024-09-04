@@ -39,6 +39,8 @@ def get_city(request, id):
         for comment in comments:
             likes[comment.id] = Like_comment.objects.filter(comment=comment.id).count()
 
+        print(f"user value: {user}, user type: {type(user)}, city.country: {city.country}, city.contry type: {type(city.country)}, image: {city.image}, image.url {city.image.url}")
+
         return render(
             request,
             "city.html",

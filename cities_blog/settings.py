@@ -6,6 +6,8 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
+# import django-extension
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,6 +33,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_extensions",
     "city",
     "django_countries",
     "cloudinary",
@@ -70,12 +73,20 @@ WSGI_APPLICATION = "cities_blog.wsgi.application"
 
 # Database
 
+# DATABASES = {
+#     "default": dj_database_url.config(
+#         default="postgresql://postgres:postgres@localhost:5432/mysite",
+#         conn_max_age=600,
+#     )
+# }
+
 DATABASES = {
-    "default": dj_database_url.config(
-        default="postgresql://postgres:postgres@localhost:5432/mysite",
-        conn_max_age=600,
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
 
 # Password validation
 
@@ -113,7 +124,14 @@ STATIC_URL = "/static/"
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+STATICFILES_DIRS = [
+    os.path.join(
+        BASE_DIR,
+        "static",
+    )
+]
 
 LOGIN_URL = "signin"
 
